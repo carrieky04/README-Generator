@@ -1,4 +1,6 @@
+const fs = require('fs');
 const inquirer = require('inquirer');
+
 
 // README Questions
 const questions = [
@@ -19,30 +21,100 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Provide instructions and examples for usage.',
+        message: 'Provide instructions for usage.',
         name: 'usage',
     },
     {
         type: 'input',
-        message: 'List collaborators, if any, with links to their GitHub ',
-        name: 'credits',
+        message: 'Contributing Guidelines',
+        name: 'contributing',
+    },
+    {
+        type: 'input',
+        message: 'Test instructions',
+        name: 'tests',
     },
     {
         type: 'list',
         message: 'Which license would you like to use?',
         name: 'license',
-        choices: ['MIT', 'ISC', 'GNUPLv3'] ,
-        filter(value) {
-            return value.toLowerCase();
-        }
+        choices: ['MIT', 'BSD', 'GNU'] ,
+    },
+    {
+        type: 'input',
+        message: 'Please enter your GitHub username',
+        name: 'github',
+    },
+    {
+        type: 'input',
+        message: 'Please enter your email address',
+        name: 'email',
     }
 ]
 
+const generateLicense = (answers) => {
+
+}
+
+const generateReadMe = (answers) => 
+`# ${answers.title}
+!${renderBadge(answers)}
+
+## Table of Contents:
+1.  [Description](#description)
+2.  [Installation](#installation)
+3.  [Usage](#usage)
+4.  [Contributing](#contributing)
+5.  [Test](#test)
+6.  [License](#license)
+7.  [Questions](#questions)
+
+## ${answers.description}
+
+## Installation
+${answers.installation}
+
+## Usage
+${answers.usage}
+
+## Contributing
+${answers.contributing}
+
+## Test
+${answers.test}
+
+## Questions
+My GitHub: ${answers.github}
+My Email: ${answers.email}
+
+## License
+${answers.license}`
+
+
+
+const renderBadge = (answers) => {
+    if (answers.license) {
+        return `[License](https://img.shields.io/badge/license-${answers.license}-blue.svg)`
+    } else {
+        return '';
+    }
+}
 
 
 inquirer
   .prompt(questions)
-  .then(answers => {
+  .then((answers) => {
     // user feedback
-    console.log(answers);
+    const readMePage = generateReadMe(answers);
+
+    fs.writeFile('README.md', readMePage, (err) =>
+        err ? console.log(err) : console.log('Succesfully created README.md')
+    );
+  })
+  .catch((error) => {
+    if (error.isTtyError) {
+        console.log('Prompt could not be rendered in the current environment')
+    } else {
+        console.log('Something else went wrong')
+    }
   })
