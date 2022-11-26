@@ -53,6 +53,7 @@ const questions = [
 ]
 
 
+// README template
 const generateReadMe = (answers) => 
 `# ${answers.title}
 !${renderBadge(answers)}
@@ -89,7 +90,7 @@ My Email: ${answers.email}
 ${answers.license}`
 
 
-
+// Creates license badge
 const renderBadge = (answers) => {
     if (answers.license) {
         return `[License](https://img.shields.io/badge/license-${answers.license}-blue.svg)`
@@ -99,6 +100,7 @@ const renderBadge = (answers) => {
 }
 
 
+// Prompts user with questions for readme
 inquirer
   .prompt(questions)
   .then((answers) => {
