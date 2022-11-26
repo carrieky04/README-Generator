@@ -52,9 +52,6 @@ const questions = [
     }
 ]
 
-const generateLicense = (answers) => {
-
-}
 
 const generateReadMe = (answers) => 
 `# ${answers.title}
@@ -69,7 +66,8 @@ const generateReadMe = (answers) =>
 6.  [License](#license)
 7.  [Questions](#questions)
 
-## ${answers.description}
+## Description
+${answers.description}
 
 ## Installation
 ${answers.installation}
