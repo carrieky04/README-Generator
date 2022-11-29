@@ -32,7 +32,7 @@ const questions = [
     {
         type: 'input',
         message: 'Test instructions',
-        name: 'tests',
+        name: 'test',
     },
     {
         type: 'list',
@@ -83,7 +83,7 @@ ${answers.contributing}
 ${answers.test}
 
 ## Questions
-My GitHub: ${answers.github}
+My GitHub: ${answers.github}\n 
 My Email: ${answers.email}
 
 ## License
@@ -107,7 +107,7 @@ inquirer
     // user feedback
     const readMePage = generateReadMe(answers);
 
-    fs.writeFile('README.md', readMePage, (err) =>
+    fs.writeFile('sampleREADME.md', readMePage, (err) =>
         err ? console.log(err) : console.log('Succesfully created README.md')
     );
   })
