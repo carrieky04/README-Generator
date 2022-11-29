@@ -26,7 +26,7 @@ Once you have node installed, then you need to install the inquirer package. Ins
 
 Click on this link to see a demo on how this application should work:
 
-[Demo Video](https://www.awesomescreenshot.com/video/12884390?key=8fb6a9a7838922b614a70d4c696ff9a3)
+[Demo Video](https://www.awesomescreenshot.com/video/12884833?key=cf6fec48b7520612b4effa8bcafc64a7)
 
 ## Credits
 
